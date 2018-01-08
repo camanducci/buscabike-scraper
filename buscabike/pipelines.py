@@ -9,17 +9,6 @@ from scrapy.exceptions import DropItem
 
 
 PHONE = r'([\(]?\d{2,3}[\)]?\s)?(\d\s)?\d{4,5}([\s|\-])?(\s\-\s)?\d{3,5}.'
-COMPANIES = r'([cC]reci|CRECI|[dD]rone|[dD]ro\-ne|[cC]orretor[es]|[pP]lantão|[aA]éreas|[Aa]érea|[Aa]erea)' # noqa
-
-
-class CompaniesPipeline(object):
-    def process_item(self, item, spider):
-        pattern = re.compile(COMPANIES)
-        match = pattern.search(item['description'])
-        if match:
-            raise DropItem("Invalid sell: {0}".format(item['title']))
-
-        return item
 
 
 class ContactsPipeline(object):
@@ -30,16 +19,6 @@ class ContactsPipeline(object):
             item['phone'] = match.group().strip()
 
         return item
-
-
-class TreatmentPipeline(object):
-    def process_item(self, item, spider):
-        self.casting_values(item)
-
-        return item
-
-    def casting_values(self, item):
-        item['garage'] = int(item.get('garage') or 0)
 
 
 class MongoPipeline(object):
@@ -67,10 +46,6 @@ class MongoPipeline(object):
                     'description': item.get('description'),
                     'image': item.get('image'),
                     'type': item.get('property_type'),
-                    'tax': item.get('tax'),
-                    'area': item.get('area'),
-                    'rooms': item.get('rooms'),
-                    'garage': item.get('garage'),
                     'city': item.get('city'),
                     'cep': item.get('cep'),
                     'district': item.get('district')

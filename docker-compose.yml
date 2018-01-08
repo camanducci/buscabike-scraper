@@ -2,7 +2,7 @@ version: '2'
 services:
   db:
     image: mongo:3.6.1-jessie
-    container_name: buscaimoveis_db
+    container_name: buscabike_db
     volumes:
       - ./data:/data:Z
     expose:

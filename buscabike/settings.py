@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for buscaimoveis project
+# Scrapy settings for buscabike project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -11,10 +11,10 @@
 
 from decouple import config
 
-BOT_NAME = 'buscaimoveis'
+BOT_NAME = 'buscabike'
 
-SPIDER_MODULES = ['buscaimoveis.spiders']
-NEWSPIDER_MODULE = 'buscaimoveis.spiders'
+SPIDER_MODULES = ['buscabike.spiders']
+NEWSPIDER_MODULE = 'buscabike.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -42,36 +42,34 @@ DOWNLOAD_DELAY = config('DOWNLOAD_DELAY', default=5)
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
+# DEFAULT_REQUEST_HEADERS = {
 #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 #   'Accept-Language': 'en',
 #}
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'buscaimoveis.middlewares.BuscaimoveisSpiderMiddleware': 543,
+# SPIDER_MIDDLEWARES = {
+#    'buscabike.middlewares.buscabikeSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'buscaimoveis.middlewares.BuscaimoveisDownloaderMiddleware': 543,
+# DOWNLOADER_MIDDLEWARES = {
+#    'buscabike.middlewares.buscabikeDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
+# EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'buscaimoveis.pipelines.CompaniesPipeline': 100,
-    'buscaimoveis.pipelines.ContactsPipeline': 200,
-    'buscaimoveis.pipelines.TreatmentPipeline': 300,
-    'buscaimoveis.pipelines.MongoPipeline': 400,
+    'buscabike.pipelines.ContactsPipeline': 100,
+    'buscabike.pipelines.MongoPipeline': 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -97,5 +95,5 @@ ITEM_PIPELINES = {
 
 # Database configuration
 MONGODB_URI = config('MONGODB_URI', default='mongodb://localhost:27017')
-MONGODB_DB = config('MONGODB_DB', default="buscaimoveis")
+MONGODB_DB = config('MONGODB_DB', default="buscabike")
 MONGODB_COLLECTION = config('MONGODB_COLLECTION', default="properties")

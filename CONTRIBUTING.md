@@ -8,7 +8,7 @@ Você pode contribuir das seguintes formas:
 
 Reportando erros
 
-Reporte os problemas em [Issues](https://github.com/gilsondev/buscaimoveis-scraper/issues)
+Reporte os problemas em [Issues](https://github.com/rochacbruno/buscabike-scraper/issues)
 
 Se você reportar um bug, por favor inclua:
 
@@ -37,7 +37,7 @@ O projeto tem o objetivo de centralizar informações de inúmeros anúncios. Se
 
 ### Enviando seu feedback
 
-A melhor forma de enviar feedback é por meio das [Issues](https://github.com/gilsondev/buscaimoveis-scraper/issues).
+A melhor forma de enviar feedback é por meio das [Issues](https://github.com/rochacbruno/buscabike-scraper/issues).
 
 Se você propôr uma nova funcionalidade:
 
