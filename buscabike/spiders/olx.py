@@ -4,13 +4,12 @@ from scrapy import Request
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
-from buscaimoveis.items import PropertyItem
+from buscabike.items import PropertyItem
 
 
 class OLXSpider(CrawlSpider):
     name = "olx"
-    allowed_domains = ["df.olx.com.br"]
-    start_urls = ["http://df.olx.com.br/imoveis/venda"]
+    allowed_domains = ["olx.com.br"]
     rules = [
         Rule(
             LinkExtractor(allow=r'\?o=2'),
@@ -18,6 +17,13 @@ class OLXSpider(CrawlSpider):
             follow=True
         )
     ]
+
+    def __init__(self, state="sp", *args, **kwargs):
+        self.start_urls = [
+            "http://{state}.olx.com.br/ciclismo".format(
+                state=state
+            )
+        ]
 
     def parse_start_url(self, response):
         return self.parse_property_list(response)
@@ -73,31 +79,6 @@ class OLXSpider(CrawlSpider):
             item['property_type'] = response.xpath(
                 u'//*[@class="OLXad-details mb30px"]/div/ul/li/p/'
                 u'span[text() = "Tipo:"]/following-sibling::strong/text()'
-            ).extract_first()
-
-            item['tax'] = response.xpath(
-                u'//*[@class="OLXad-details mb30px"]/div/ul/li/p/'
-                u'span[text() = "Condomínio:"]/'
-                'following-sibling::strong/text()'
-            ).extract_first()
-
-            area = response.xpath(
-                u'//*[@class="OLXad-details mb30px"]/div/ul/li/p/'
-                u'span[text() = "Área construída:"]/'
-                u'following-sibling::strong/text()'
-            )
-            item['area'] = area.extract_first(default='').strip()
-
-            item['rooms'] = response.xpath(
-                u'//*[@class="OLXad-details mb30px"]/div/ul/li/p/'
-                u'span[text() = "Quartos:"]/'
-                u'following-sibling::strong/text()'
-            ).extract_first()
-
-            item['garage'] = response.xpath(
-                u'//*[@class="OLXad-details mb30px"]/div/ul/li/p/'
-                u'span[text() = "Vagas na garagem:"]/'
-                u'following-sibling::strong/text()'
             ).extract_first()
 
             item['city'] = response.xpath(
